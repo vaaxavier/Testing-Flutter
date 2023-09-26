@@ -1,0 +1,2272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.1 on win32)" generated="20230208 14:54:17.834" rpa="false" schemaversion="3">
+<suite id="s1" name="Login" source="C:\Users\vaaxa\TeaPayment\Testing-Flutter\test\Login.robot">
+<test id="s1-t1" name="Successful Login with Valid entries" line="10">
+<kw name="Open app" library="app" type="SETUP">
+<kw name="Open Application" library="AppiumLibrary">
+<arg>http://localhost:4723/wd/hub</arg>
+<arg>automationName=UiAutomator2</arg>
+<arg>platformName=Android</arg>
+<arg>deviceName=Tea</arg>
+<arg>app=${ROOT}\\mobile_testing\\app\\app-uat-release.apk</arg>
+<arg>udid=emulator-5554</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<status status="PASS" starttime="20230208 14:54:19.484" endtime="20230208 14:54:41.513"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:19.481" endtime="20230208 14:54:41.513"/>
+</kw>
+<kw name="Click on login button on Main Page" library="main_page">
+<kw name="Interact to element" library="basic_actions">
+<arg>${main_page.login_button}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:41.518" endtime="20230208 14:54:45.661"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:45.684" level="INFO">Clicking element 'accessibility_id=Login'.</msg>
+<status status="PASS" starttime="20230208 14:54:45.679" endtime="20230208 14:54:45.801"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:45.667" endtime="20230208 14:54:45.801"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:45.665" endtime="20230208 14:54:45.802"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:45.802" endtime="20230208 14:54:45.803"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:45.802" endtime="20230208 14:54:45.804"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:45.665" endtime="20230208 14:54:45.804"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:45.664" endtime="20230208 14:54:45.804"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:45.806" endtime="20230208 14:54:45.806"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:45.805" endtime="20230208 14:54:45.807"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:45.808" endtime="20230208 14:54:45.809"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:45.807" endtime="20230208 14:54:45.809"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:45.805" endtime="20230208 14:54:45.809"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:45.804" endtime="20230208 14:54:45.810"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:45.664" endtime="20230208 14:54:45.810"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:45.662" endtime="20230208 14:54:45.810"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:45.820" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:45.811" endtime="20230208 14:54:45.822"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:45.824" endtime="20230208 14:54:45.824"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:45.822" endtime="20230208 14:54:45.825"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:45.822" endtime="20230208 14:54:45.825"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:45.829" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:45.828" endtime="20230208 14:54:45.830"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:45.832" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:45.831" endtime="20230208 14:54:45.834"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:45.837" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:45.835" endtime="20230208 14:54:45.841"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:45.843" level="INFO">${elemento_limpo} = accessibilityidLogin</msg>
+<status status="PASS" starttime="20230208 14:54:45.841" endtime="20230208 14:54:45.846"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:45.848" level="INFO">${time_evidencia} = 2023_02_08__14_54_45_847780</msg>
+<status status="PASS" starttime="20230208 14:54:45.846" endtime="20230208 14:54:45.849"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:45.853" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:45.851" endtime="20230208 14:54:45.856"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:46.961" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_45_847780_elemento_accessibilityidLogin.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_45_847780_elemento_accessibilityidLogin.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:45.857" endtime="20230208 14:54:46.963"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:45.850" endtime="20230208 14:54:46.963"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:46.964" endtime="20230208 14:54:46.965"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:46.964" endtime="20230208 14:54:46.967"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:45.850" endtime="20230208 14:54:46.967"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:45.825" endtime="20230208 14:54:46.967"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:41.517" endtime="20230208 14:54:46.968"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:46.969" endtime="20230208 14:54:46.970"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:46.969" endtime="20230208 14:54:46.971"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:41.517" endtime="20230208 14:54:46.971"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:41.515" endtime="20230208 14:54:46.971"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:41.514" endtime="20230208 14:54:46.972"/>
+</kw>
+<kw name="Click on country dropdown" library="login_page">
+<kw name="Interact to element" library="basic_actions">
+<arg>${login_page.msg_dont_have_account}</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:46.983" endtime="20230208 14:54:48.082"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:48.087" endtime="20230208 14:54:48.087"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.084" endtime="20230208 14:54:48.088"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="PASS" starttime="20230208 14:54:48.088" endtime="20230208 14:54:48.088"/>
+</return>
+<status status="PASS" starttime="20230208 14:54:48.088" endtime="20230208 14:54:48.089"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.084" endtime="20230208 14:54:48.089"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:48.084" endtime="20230208 14:54:48.089"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.090" endtime="20230208 14:54:48.090"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.090" endtime="20230208 14:54:48.091"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.091" endtime="20230208 14:54:48.091"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.091" endtime="20230208 14:54:48.092"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:48.090" endtime="20230208 14:54:48.092"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:48.089" endtime="20230208 14:54:48.092"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.084" endtime="20230208 14:54:48.092"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:48.082" endtime="20230208 14:54:48.092"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:48.094" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:48.093" endtime="20230208 14:54:48.095"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:48.097" endtime="20230208 14:54:48.098"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.096" endtime="20230208 14:54:48.099"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.096" endtime="20230208 14:54:48.099"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:48.101" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:48.100" endtime="20230208 14:54:48.101"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:48.103" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:48.101" endtime="20230208 14:54:48.105"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:48.106" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:48.105" endtime="20230208 14:54:48.108"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:48.110" level="INFO">${elemento_limpo} = accessibilityidDont have an account</msg>
+<status status="PASS" starttime="20230208 14:54:48.108" endtime="20230208 14:54:48.111"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:48.113" level="INFO">${time_evidencia} = 2023_02_08__14_54_48_112966</msg>
+<status status="PASS" starttime="20230208 14:54:48.112" endtime="20230208 14:54:48.113"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:48.118" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:48.116" endtime="20230208 14:54:48.119"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:48.553" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_48_112966_elemento_accessibilityidDont%20have%20an%20account.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_48_112966_elemento_accessibilityidDont%20have%20an%20account.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:48.120" endtime="20230208 14:54:48.555"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.113" endtime="20230208 14:54:48.556"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.557" endtime="20230208 14:54:48.559"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.556" endtime="20230208 14:54:48.559"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.113" endtime="20230208 14:54:48.559"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:48.099" endtime="20230208 14:54:48.560"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:46.982" endtime="20230208 14:54:48.560"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.561" endtime="20230208 14:54:48.562"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.560" endtime="20230208 14:54:48.563"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:46.982" endtime="20230208 14:54:48.563"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:46.978" endtime="20230208 14:54:48.563"/>
+</kw>
+<kw name="Get element or elements from a locator" library="elements">
+<var>${country_dropdown}</var>
+<arg>${login_page.list_class_to_country}</arg>
+<arg>${position_country_element}</arg>
+<kw name="Get Webelements" library="AppiumLibrary">
+<var>@{list}</var>
+<arg>${locator}</arg>
+<doc>Returns list of [http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.remote.webelement|WebElement] objects matching ``locator``.</doc>
+<msg timestamp="20230208 14:54:48.615" level="INFO">@{list} = [ &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="55837b2c-57bf-4f53-b8e8-5ed68eef359b")&gt; | &lt;appium.webdriver.webelement.WebElement (session="3bc020b7...</msg>
+<status status="PASS" starttime="20230208 14:54:48.567" endtime="20230208 14:54:48.615"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${element_position}&quot;!=&quot;${EMPTY}&quot;">
+<return>
+<value>${list}[${element_position}]</value>
+<status status="PASS" starttime="20230208 14:54:48.617" endtime="20230208 14:54:48.617"/>
+</return>
+<status status="PASS" starttime="20230208 14:54:48.616" endtime="20230208 14:54:48.618"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>@{list}</value>
+<status status="NOT RUN" starttime="20230208 14:54:48.618" endtime="20230208 14:54:48.618"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:48.618" endtime="20230208 14:54:48.618"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.616" endtime="20230208 14:54:48.618"/>
+</if>
+<msg timestamp="20230208 14:54:48.620" level="INFO">${country_dropdown} = &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="ecf5ed71-9a31-44d2-9666-b79b8cdaebf6")&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:48.564" endtime="20230208 14:54:48.621"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${country_dropdown}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:48.625" endtime="20230208 14:54:48.667"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:48.691" level="INFO">Clicking element '&lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="ecf5ed71-9a31-44d2-9666-b79b8cdaebf6")&gt;'.</msg>
+<status status="PASS" starttime="20230208 14:54:48.686" endtime="20230208 14:54:48.749"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.673" endtime="20230208 14:54:48.750"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.671" endtime="20230208 14:54:48.750"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:48.752" endtime="20230208 14:54:48.752"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:48.751" endtime="20230208 14:54:48.753"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.671" endtime="20230208 14:54:48.753"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:48.670" endtime="20230208 14:54:48.754"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.756" endtime="20230208 14:54:48.756"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.755" endtime="20230208 14:54:48.757"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:48.759" endtime="20230208 14:54:48.759"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:48.758" endtime="20230208 14:54:48.760"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:48.755" endtime="20230208 14:54:48.760"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:48.754" endtime="20230208 14:54:48.760"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.670" endtime="20230208 14:54:48.761"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:48.667" endtime="20230208 14:54:48.761"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:48.763" level="INFO">${status_variable_type} = False</msg>
+<status status="PASS" starttime="20230208 14:54:48.762" endtime="20230208 14:54:48.764"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:48.767" level="INFO">${locator} = </msg>
+<status status="PASS" starttime="20230208 14:54:48.765" endtime="20230208 14:54:48.769"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.764" endtime="20230208 14:54:48.770"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.764" endtime="20230208 14:54:48.770"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:48.774" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:48.772" endtime="20230208 14:54:48.776"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:48.777" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:48.776" endtime="20230208 14:54:48.778"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:48.782" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:48.779" endtime="20230208 14:54:48.784"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:48.787" level="INFO">${elemento_limpo} = </msg>
+<status status="PASS" starttime="20230208 14:54:48.784" endtime="20230208 14:54:48.789"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:48.792" level="INFO">${time_evidencia} = 2023_02_08__14_54_48_792188</msg>
+<status status="PASS" starttime="20230208 14:54:48.790" endtime="20230208 14:54:48.795"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:48.800" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:48.798" endtime="20230208 14:54:48.803"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:49.255" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_48_792188_elemento_.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_48_792188_elemento_.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:48.804" endtime="20230208 14:54:49.256"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.797" endtime="20230208 14:54:49.256"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:49.257" endtime="20230208 14:54:49.257"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:49.256" endtime="20230208 14:54:49.257"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.795" endtime="20230208 14:54:49.257"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:48.771" endtime="20230208 14:54:49.257"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:48.624" endtime="20230208 14:54:49.257"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:49.259" endtime="20230208 14:54:49.259"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:49.257" endtime="20230208 14:54:49.259"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:48.624" endtime="20230208 14:54:49.259"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:48.621" endtime="20230208 14:54:49.260"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:46.975" endtime="20230208 14:54:49.260"/>
+</kw>
+<kw name="Search for code" library="country_code_page">
+<arg>55</arg>
+<kw name="Interact to element" library="basic_actions">
+<arg>${country_code_page.search_field}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<msg timestamp="20230208 14:54:49.924" level="INFO">xpath criteria: //*[@class="android.widget.EditText"]</msg>
+<status status="PASS" starttime="20230208 14:54:49.263" endtime="20230208 14:54:49.925"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:49.939" level="INFO">Clicking element '//*[@class="android.widget.EditText"]'.</msg>
+<msg timestamp="20230208 14:54:50.145" level="INFO">xpath criteria: //*[@class="android.widget.EditText"]</msg>
+<status status="PASS" starttime="20230208 14:54:49.936" endtime="20230208 14:54:50.147"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:49.930" endtime="20230208 14:54:50.147"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:49.928" endtime="20230208 14:54:50.148"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:50.148" endtime="20230208 14:54:50.149"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:50.148" endtime="20230208 14:54:50.149"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:49.928" endtime="20230208 14:54:50.151"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:49.926" endtime="20230208 14:54:50.151"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:50.152" endtime="20230208 14:54:50.153"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:50.152" endtime="20230208 14:54:50.153"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:50.154" endtime="20230208 14:54:50.155"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:50.154" endtime="20230208 14:54:50.156"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:50.152" endtime="20230208 14:54:50.156"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:50.151" endtime="20230208 14:54:50.156"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:49.926" endtime="20230208 14:54:50.156"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:49.926" endtime="20230208 14:54:50.156"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:50.159" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:50.158" endtime="20230208 14:54:50.160"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:50.163" endtime="20230208 14:54:50.163"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:50.160" endtime="20230208 14:54:50.163"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:50.160" endtime="20230208 14:54:50.164"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:50.168" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:50.166" endtime="20230208 14:54:50.169"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:50.171" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:50.170" endtime="20230208 14:54:50.172"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:50.175" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:50.173" endtime="20230208 14:54:50.176"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:50.179" level="INFO">${elemento_limpo} = [classandroidwidgetEditText]</msg>
+<status status="PASS" starttime="20230208 14:54:50.176" endtime="20230208 14:54:50.180"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:50.182" level="INFO">${time_evidencia} = 2023_02_08__14_54_50_181673</msg>
+<status status="PASS" starttime="20230208 14:54:50.181" endtime="20230208 14:54:50.186"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:50.189" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:50.188" endtime="20230208 14:54:50.191"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:50.831" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_50_181673_elemento_%5BclassandroidwidgetEditText%5D.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_50_181673_elemento_%5BclassandroidwidgetEditText%5D.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:50.191" endtime="20230208 14:54:50.832"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:50.187" endtime="20230208 14:54:50.832"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:50.834" endtime="20230208 14:54:50.834"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:50.832" endtime="20230208 14:54:50.834"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:50.187" endtime="20230208 14:54:50.836"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:50.164" endtime="20230208 14:54:50.836"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:49.262" endtime="20230208 14:54:50.836"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:50.837" endtime="20230208 14:54:50.838"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:50.836" endtime="20230208 14:54:50.838"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:49.262" endtime="20230208 14:54:50.838"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:49.261" endtime="20230208 14:54:50.839"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${country_code_page.search_field}</arg>
+<arg>Input Text</arg>
+<arg>${EMPTY}</arg>
+<arg>${country_code}</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<msg timestamp="20230208 14:54:51.592" level="INFO">xpath criteria: //*[@class="android.widget.EditText"]</msg>
+<status status="PASS" starttime="20230208 14:54:50.842" endtime="20230208 14:54:51.594"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:51.618" level="INFO">Typing text '55' into text field '//*[@class="android.widget.EditText"]'</msg>
+<msg timestamp="20230208 14:54:51.893" level="INFO">xpath criteria: //*[@class="android.widget.EditText"]</msg>
+<status status="PASS" starttime="20230208 14:54:51.614" endtime="20230208 14:54:51.895"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:51.600" endtime="20230208 14:54:51.895"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:51.599" endtime="20230208 14:54:51.897"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:51.897" endtime="20230208 14:54:51.899"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:51.897" endtime="20230208 14:54:51.899"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:51.599" endtime="20230208 14:54:51.899"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:51.597" endtime="20230208 14:54:51.899"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:51.901" endtime="20230208 14:54:51.902"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:51.900" endtime="20230208 14:54:51.902"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:51.903" endtime="20230208 14:54:51.903"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:51.903" endtime="20230208 14:54:51.904"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:51.900" endtime="20230208 14:54:51.904"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:51.900" endtime="20230208 14:54:51.904"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:51.597" endtime="20230208 14:54:51.905"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:51.594" endtime="20230208 14:54:51.905"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:51.908" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:51.906" endtime="20230208 14:54:51.908"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:51.910" endtime="20230208 14:54:51.911"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:51.909" endtime="20230208 14:54:51.912"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:51.909" endtime="20230208 14:54:51.912"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:51.916" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:51.915" endtime="20230208 14:54:51.917"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:51.918" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:51.917" endtime="20230208 14:54:51.920"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:51.922" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:51.921" endtime="20230208 14:54:51.924"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:51.926" level="INFO">${elemento_limpo} = [classandroidwidgetEditText]</msg>
+<status status="PASS" starttime="20230208 14:54:51.925" endtime="20230208 14:54:51.927"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:51.931" level="INFO">${time_evidencia} = 2023_02_08__14_54_51_930008</msg>
+<status status="PASS" starttime="20230208 14:54:51.928" endtime="20230208 14:54:51.932"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:51.937" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:51.934" endtime="20230208 14:54:51.938"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:52.570" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_51_930008_elemento_%5BclassandroidwidgetEditText%5D.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_51_930008_elemento_%5BclassandroidwidgetEditText%5D.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:51.940" endtime="20230208 14:54:52.571"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:51.933" endtime="20230208 14:54:52.571"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:52.572" endtime="20230208 14:54:52.573"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:52.571" endtime="20230208 14:54:52.573"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:51.933" endtime="20230208 14:54:52.574"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:51.913" endtime="20230208 14:54:52.574"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:50.842" endtime="20230208 14:54:52.575"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:52.576" endtime="20230208 14:54:52.578"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:52.575" endtime="20230208 14:54:52.578"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:50.842" endtime="20230208 14:54:52.579"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:50.839" endtime="20230208 14:54:52.579"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:49.261" endtime="20230208 14:54:52.579"/>
+</kw>
+<kw name="Click on country code" library="country_code_page">
+<arg>${country_code_page.br_code_button}</arg>
+<kw name="Interact to element" library="basic_actions">
+<arg>${locator}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<msg timestamp="20230208 14:54:52.811" level="INFO">xpath criteria: //android.view.View[contains(@content-desc,'Brazil')]</msg>
+<status status="PASS" starttime="20230208 14:54:52.585" endtime="20230208 14:54:52.813"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:52.834" level="INFO">Clicking element '//android.view.View[contains(@content-desc,'Brazil')]'.</msg>
+<msg timestamp="20230208 14:54:53.000" level="INFO">xpath criteria: //android.view.View[contains(@content-desc,'Brazil')]</msg>
+<status status="PASS" starttime="20230208 14:54:52.830" endtime="20230208 14:54:53.002"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:52.818" endtime="20230208 14:54:53.002"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:52.817" endtime="20230208 14:54:53.003"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:53.003" endtime="20230208 14:54:53.004"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:53.003" endtime="20230208 14:54:53.005"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:52.817" endtime="20230208 14:54:53.005"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:52.816" endtime="20230208 14:54:53.005"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.008" endtime="20230208 14:54:53.009"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.007" endtime="20230208 14:54:53.009"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.010" endtime="20230208 14:54:53.011"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.010" endtime="20230208 14:54:53.011"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:53.007" endtime="20230208 14:54:53.011"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:53.006" endtime="20230208 14:54:53.011"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:52.816" endtime="20230208 14:54:53.012"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:52.814" endtime="20230208 14:54:53.012"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:53.014" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:53.013" endtime="20230208 14:54:53.015"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:53.016" endtime="20230208 14:54:53.016"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.015" endtime="20230208 14:54:53.018"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.015" endtime="20230208 14:54:53.018"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:53.021" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:53.020" endtime="20230208 14:54:53.022"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:53.024" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:53.023" endtime="20230208 14:54:53.025"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:53.027" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:53.026" endtime="20230208 14:54:53.028"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:53.031" level="INFO">${elemento_limpo} = androidviewView[contains(contentdescBrazil)]</msg>
+<status status="PASS" starttime="20230208 14:54:53.029" endtime="20230208 14:54:53.032"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:53.034" level="INFO">${time_evidencia} = 2023_02_08__14_54_53_034458</msg>
+<status status="PASS" starttime="20230208 14:54:53.033" endtime="20230208 14:54:53.035"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:53.040" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:53.038" endtime="20230208 14:54:53.041"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:53.568" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_53_034458_elemento_androidviewView%5Bcontains%28contentdescBrazil%29%5D.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_53_034458_elemento_androidviewView%5Bcontains%28contentdescBrazil%29%5D.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:53.042" endtime="20230208 14:54:53.570"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:53.036" endtime="20230208 14:54:53.570"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.573" endtime="20230208 14:54:53.575"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.571" endtime="20230208 14:54:53.575"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.036" endtime="20230208 14:54:53.576"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:53.018" endtime="20230208 14:54:53.576"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:52.585" endtime="20230208 14:54:53.576"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.578" endtime="20230208 14:54:53.581"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.577" endtime="20230208 14:54:53.581"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:52.585" endtime="20230208 14:54:53.582"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:52.583" endtime="20230208 14:54:53.582"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:52.581" endtime="20230208 14:54:53.583"/>
+</kw>
+<kw name="Fill phone on phone number field" library="login_page">
+<arg>11969018882</arg>
+<kw name="Interact to element" library="basic_actions">
+<arg>${login_page.msg_dont_have_account}</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:53.594" endtime="20230208 14:54:53.913"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:53.921" endtime="20230208 14:54:53.922"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.918" endtime="20230208 14:54:53.922"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="PASS" starttime="20230208 14:54:53.924" endtime="20230208 14:54:53.925"/>
+</return>
+<status status="PASS" starttime="20230208 14:54:53.923" endtime="20230208 14:54:53.925"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.918" endtime="20230208 14:54:53.926"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:53.917" endtime="20230208 14:54:53.926"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.929" endtime="20230208 14:54:53.930"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.928" endtime="20230208 14:54:53.931"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:53.932" endtime="20230208 14:54:53.933"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.931" endtime="20230208 14:54:53.933"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:53.928" endtime="20230208 14:54:53.934"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:53.926" endtime="20230208 14:54:53.934"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.917" endtime="20230208 14:54:53.934"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:53.914" endtime="20230208 14:54:53.935"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:53.937" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:53.935" endtime="20230208 14:54:53.939"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:53.942" endtime="20230208 14:54:53.944"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:53.940" endtime="20230208 14:54:53.945"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.940" endtime="20230208 14:54:53.946"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:53.952" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:53.949" endtime="20230208 14:54:53.953"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:53.956" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:53.954" endtime="20230208 14:54:53.960"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:53.964" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:53.961" endtime="20230208 14:54:53.966"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:53.970" level="INFO">${elemento_limpo} = accessibilityidDont have an account</msg>
+<status status="PASS" starttime="20230208 14:54:53.966" endtime="20230208 14:54:53.973"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:53.978" level="INFO">${time_evidencia} = 2023_02_08__14_54_53_977330</msg>
+<status status="PASS" starttime="20230208 14:54:53.974" endtime="20230208 14:54:53.979"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:53.988" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:53.983" endtime="20230208 14:54:53.991"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:54.400" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_53_977330_elemento_accessibilityidDont%20have%20an%20account.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_53_977330_elemento_accessibilityidDont%20have%20an%20account.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:53.993" endtime="20230208 14:54:54.402"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:53.980" endtime="20230208 14:54:54.402"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:54.402" endtime="20230208 14:54:54.403"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:54.402" endtime="20230208 14:54:54.403"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.980" endtime="20230208 14:54:54.403"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:53.946" endtime="20230208 14:54:54.404"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:53.593" endtime="20230208 14:54:54.404"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:54.404" endtime="20230208 14:54:54.405"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:54.404" endtime="20230208 14:54:54.405"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:53.593" endtime="20230208 14:54:54.405"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:53.586" endtime="20230208 14:54:54.406"/>
+</kw>
+<kw name="Get element or elements from a locator" library="elements">
+<var>${phone_number_element}</var>
+<arg>${login_page.list_editable_fields}</arg>
+<arg>${position_phone_number}</arg>
+<kw name="Get Webelements" library="AppiumLibrary">
+<var>@{list}</var>
+<arg>${locator}</arg>
+<doc>Returns list of [http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.remote.webelement|WebElement] objects matching ``locator``.</doc>
+<msg timestamp="20230208 14:54:54.436" level="INFO">@{list} = [ &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="7aef0f43-8d10-4295-8c61-65488b59a141")&gt; | &lt;appium.webdriver.webelement.WebElement (session="3bc020b7...</msg>
+<status status="PASS" starttime="20230208 14:54:54.408" endtime="20230208 14:54:54.436"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${element_position}&quot;!=&quot;${EMPTY}&quot;">
+<return>
+<value>${list}[${element_position}]</value>
+<status status="PASS" starttime="20230208 14:54:54.439" endtime="20230208 14:54:54.439"/>
+</return>
+<status status="PASS" starttime="20230208 14:54:54.437" endtime="20230208 14:54:54.439"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>@{list}</value>
+<status status="NOT RUN" starttime="20230208 14:54:54.440" endtime="20230208 14:54:54.440"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:54.439" endtime="20230208 14:54:54.440"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.436" endtime="20230208 14:54:54.440"/>
+</if>
+<msg timestamp="20230208 14:54:54.441" level="INFO">${phone_number_element} = &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="7aef0f43-8d10-4295-8c61-65488b59a141")&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:54.406" endtime="20230208 14:54:54.442"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${phone_number_element}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:54.445" endtime="20230208 14:54:54.470"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:54.488" level="INFO">Clicking element '&lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="7aef0f43-8d10-4295-8c61-65488b59a141")&gt;'.</msg>
+<status status="PASS" starttime="20230208 14:54:54.484" endtime="20230208 14:54:54.549"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:54.474" endtime="20230208 14:54:54.550"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:54.471" endtime="20230208 14:54:54.550"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:54.552" endtime="20230208 14:54:54.552"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:54.550" endtime="20230208 14:54:54.552"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.471" endtime="20230208 14:54:54.553"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:54.471" endtime="20230208 14:54:54.553"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:54.555" endtime="20230208 14:54:54.556"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:54.553" endtime="20230208 14:54:54.556"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:54.557" endtime="20230208 14:54:54.557"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:54.556" endtime="20230208 14:54:54.557"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:54.553" endtime="20230208 14:54:54.559"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:54.553" endtime="20230208 14:54:54.559"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.471" endtime="20230208 14:54:54.560"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:54.470" endtime="20230208 14:54:54.560"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:54.563" level="INFO">${status_variable_type} = False</msg>
+<status status="PASS" starttime="20230208 14:54:54.562" endtime="20230208 14:54:54.563"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:54.566" level="INFO">${locator} = </msg>
+<status status="PASS" starttime="20230208 14:54:54.565" endtime="20230208 14:54:54.568"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:54.564" endtime="20230208 14:54:54.569"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.564" endtime="20230208 14:54:54.570"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:54.574" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:54.573" endtime="20230208 14:54:54.575"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:54.579" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:54.576" endtime="20230208 14:54:54.580"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:54.583" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:54.581" endtime="20230208 14:54:54.584"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:54.586" level="INFO">${elemento_limpo} = </msg>
+<status status="PASS" starttime="20230208 14:54:54.585" endtime="20230208 14:54:54.589"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:54.595" level="INFO">${time_evidencia} = 2023_02_08__14_54_54_594759</msg>
+<status status="PASS" starttime="20230208 14:54:54.590" endtime="20230208 14:54:54.596"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:54.601" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:54.598" endtime="20230208 14:54:54.604"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:55.071" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_54_594759_elemento_.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_54_594759_elemento_.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:54.605" endtime="20230208 14:54:55.071"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:54.597" endtime="20230208 14:54:55.071"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:55.073" endtime="20230208 14:54:55.074"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:55.071" endtime="20230208 14:54:55.074"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.597" endtime="20230208 14:54:55.074"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:54.570" endtime="20230208 14:54:55.074"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:54.445" endtime="20230208 14:54:55.075"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:55.076" endtime="20230208 14:54:55.076"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:55.075" endtime="20230208 14:54:55.076"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:54.443" endtime="20230208 14:54:55.078"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:54.442" endtime="20230208 14:54:55.078"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${phone_number_element}</arg>
+<arg>Input Text</arg>
+<arg>${EMPTY}</arg>
+<arg>${phone}</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:55.079" endtime="20230208 14:54:55.259"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:55.288" level="INFO">Typing text '11969018882' into text field '&lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="7aef0f43-8d10-4295-8c61-65488b59a141")&gt;'</msg>
+<status status="PASS" starttime="20230208 14:54:55.282" endtime="20230208 14:54:55.356"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:55.265" endtime="20230208 14:54:55.357"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:55.263" endtime="20230208 14:54:55.359"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:55.360" endtime="20230208 14:54:55.361"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:55.360" endtime="20230208 14:54:55.362"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:55.263" endtime="20230208 14:54:55.362"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:55.262" endtime="20230208 14:54:55.362"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:55.364" endtime="20230208 14:54:55.365"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:55.363" endtime="20230208 14:54:55.365"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:55.367" endtime="20230208 14:54:55.369"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:55.366" endtime="20230208 14:54:55.370"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:55.363" endtime="20230208 14:54:55.370"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:55.363" endtime="20230208 14:54:55.371"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:55.262" endtime="20230208 14:54:55.371"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:55.260" endtime="20230208 14:54:55.372"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:55.376" level="INFO">${status_variable_type} = False</msg>
+<status status="PASS" starttime="20230208 14:54:55.373" endtime="20230208 14:54:55.377"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:55.388" level="INFO">${locator} = </msg>
+<status status="PASS" starttime="20230208 14:54:55.382" endtime="20230208 14:54:55.392"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:55.379" endtime="20230208 14:54:55.393"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:55.379" endtime="20230208 14:54:55.393"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:55.400" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:55.398" endtime="20230208 14:54:55.403"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:55.408" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:55.404" endtime="20230208 14:54:55.414"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:55.418" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:55.416" endtime="20230208 14:54:55.420"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:55.428" level="INFO">${elemento_limpo} = </msg>
+<status status="PASS" starttime="20230208 14:54:55.422" endtime="20230208 14:54:55.431"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:55.435" level="INFO">${time_evidencia} = 2023_02_08__14_54_55_434189</msg>
+<status status="PASS" starttime="20230208 14:54:55.432" endtime="20230208 14:54:55.437"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:55.449" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:55.443" endtime="20230208 14:54:55.452"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:56.214" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_55_434189_elemento_.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_55_434189_elemento_.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:55.454" endtime="20230208 14:54:56.216"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:55.438" endtime="20230208 14:54:56.217"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:56.219" endtime="20230208 14:54:56.222"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:56.217" endtime="20230208 14:54:56.223"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:55.438" endtime="20230208 14:54:56.223"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:55.394" endtime="20230208 14:54:56.224"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:55.079" endtime="20230208 14:54:56.225"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:56.227" endtime="20230208 14:54:56.228"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:56.226" endtime="20230208 14:54:56.230"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:55.079" endtime="20230208 14:54:56.230"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:55.078" endtime="20230208 14:54:56.231"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:53.585" endtime="20230208 14:54:56.231"/>
+</kw>
+<kw name="Fill password on password field" library="login_page">
+<arg>${USER.PASSWORD}</arg>
+<kw name="Get element or elements from a locator" library="elements">
+<var>${password_element}</var>
+<arg>${login_page.list_editable_fields}</arg>
+<arg>${position_password}</arg>
+<kw name="Get Webelements" library="AppiumLibrary">
+<var>@{list}</var>
+<arg>${locator}</arg>
+<doc>Returns list of [http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.remote.webelement|WebElement] objects matching ``locator``.</doc>
+<msg timestamp="20230208 14:54:56.297" level="INFO">@{list} = [ &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="ae04038e-8c34-4631-9780-a00b4aeb96a6")&gt; | &lt;appium.webdriver.webelement.WebElement (session="3bc020b7...</msg>
+<status status="PASS" starttime="20230208 14:54:56.238" endtime="20230208 14:54:56.300"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${element_position}&quot;!=&quot;${EMPTY}&quot;">
+<return>
+<value>${list}[${element_position}]</value>
+<status status="PASS" starttime="20230208 14:54:56.305" endtime="20230208 14:54:56.306"/>
+</return>
+<status status="PASS" starttime="20230208 14:54:56.301" endtime="20230208 14:54:56.306"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>@{list}</value>
+<status status="NOT RUN" starttime="20230208 14:54:56.307" endtime="20230208 14:54:56.309"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:56.307" endtime="20230208 14:54:56.309"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.301" endtime="20230208 14:54:56.309"/>
+</if>
+<msg timestamp="20230208 14:54:56.312" level="INFO">${password_element} = &lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="643017ba-afbb-4119-a6ca-48c194923d6c")&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:56.235" endtime="20230208 14:54:56.313"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${password_element}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:56.321" endtime="20230208 14:54:56.382"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:56.418" level="INFO">Clicking element '&lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="643017ba-afbb-4119-a6ca-48c194923d6c")&gt;'.</msg>
+<status status="PASS" starttime="20230208 14:54:56.409" endtime="20230208 14:54:56.501"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.389" endtime="20230208 14:54:56.501"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.386" endtime="20230208 14:54:56.502"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:56.504" endtime="20230208 14:54:56.504"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:56.503" endtime="20230208 14:54:56.505"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.386" endtime="20230208 14:54:56.505"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:56.385" endtime="20230208 14:54:56.505"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:56.507" endtime="20230208 14:54:56.508"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:56.506" endtime="20230208 14:54:56.508"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:56.510" endtime="20230208 14:54:56.511"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:56.508" endtime="20230208 14:54:56.511"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:56.506" endtime="20230208 14:54:56.512"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:56.505" endtime="20230208 14:54:56.512"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.385" endtime="20230208 14:54:56.512"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:56.383" endtime="20230208 14:54:56.512"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:56.515" level="INFO">${status_variable_type} = False</msg>
+<status status="PASS" starttime="20230208 14:54:56.513" endtime="20230208 14:54:56.516"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:56.523" level="INFO">${locator} = </msg>
+<status status="PASS" starttime="20230208 14:54:56.518" endtime="20230208 14:54:56.524"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.517" endtime="20230208 14:54:56.524"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.517" endtime="20230208 14:54:56.524"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:56.530" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:56.528" endtime="20230208 14:54:56.533"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:56.534" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:56.533" endtime="20230208 14:54:56.535"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:56.539" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:56.536" endtime="20230208 14:54:56.540"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:56.543" level="INFO">${elemento_limpo} = </msg>
+<status status="PASS" starttime="20230208 14:54:56.541" endtime="20230208 14:54:56.546"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:56.549" level="INFO">${time_evidencia} = 2023_02_08__14_54_56_547641</msg>
+<status status="PASS" starttime="20230208 14:54:56.546" endtime="20230208 14:54:56.551"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:56.553" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:56.552" endtime="20230208 14:54:56.554"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:57.153" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_56_547641_elemento_.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_56_547641_elemento_.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:56.555" endtime="20230208 14:54:57.154"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.551" endtime="20230208 14:54:57.155"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:57.156" endtime="20230208 14:54:57.157"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:57.155" endtime="20230208 14:54:57.158"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.551" endtime="20230208 14:54:57.158"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:56.525" endtime="20230208 14:54:57.158"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.320" endtime="20230208 14:54:57.159"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:57.160" endtime="20230208 14:54:57.162"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:57.159" endtime="20230208 14:54:57.163"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:56.320" endtime="20230208 14:54:57.163"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:56.314" endtime="20230208 14:54:57.163"/>
+</kw>
+<kw name="Interact to element" library="basic_actions">
+<arg>${password_element}</arg>
+<arg>Input Text</arg>
+<arg>${EMPTY}</arg>
+<arg>${password}</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:57.167" endtime="20230208 14:54:57.205"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:57.233" level="INFO">Typing text '190291' into text field '&lt;appium.webdriver.webelement.WebElement (session="3bc020b7-c390-437e-8c5c-0ce53b9a8beb", element="643017ba-afbb-4119-a6ca-48c194923d6c")&gt;'</msg>
+<status status="PASS" starttime="20230208 14:54:57.228" endtime="20230208 14:54:57.301"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:57.212" endtime="20230208 14:54:57.302"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:57.210" endtime="20230208 14:54:57.302"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:57.303" endtime="20230208 14:54:57.303"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:57.302" endtime="20230208 14:54:57.303"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:57.210" endtime="20230208 14:54:57.304"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:57.210" endtime="20230208 14:54:57.304"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:57.306" endtime="20230208 14:54:57.308"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:57.305" endtime="20230208 14:54:57.308"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:57.309" endtime="20230208 14:54:57.310"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:57.309" endtime="20230208 14:54:57.311"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:57.305" endtime="20230208 14:54:57.311"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:57.304" endtime="20230208 14:54:57.311"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:57.210" endtime="20230208 14:54:57.311"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:57.207" endtime="20230208 14:54:57.312"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:57.314" level="INFO">${status_variable_type} = False</msg>
+<status status="PASS" starttime="20230208 14:54:57.313" endtime="20230208 14:54:57.315"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:57.318" level="INFO">${locator} = </msg>
+<status status="PASS" starttime="20230208 14:54:57.316" endtime="20230208 14:54:57.320"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:57.315" endtime="20230208 14:54:57.320"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:57.315" endtime="20230208 14:54:57.321"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:57.325" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:57.323" endtime="20230208 14:54:57.325"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:57.328" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:57.326" endtime="20230208 14:54:57.329"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:57.331" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:57.330" endtime="20230208 14:54:57.333"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:57.336" level="INFO">${elemento_limpo} = </msg>
+<status status="PASS" starttime="20230208 14:54:57.334" endtime="20230208 14:54:57.337"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:57.341" level="INFO">${time_evidencia} = 2023_02_08__14_54_57_340669</msg>
+<status status="PASS" starttime="20230208 14:54:57.339" endtime="20230208 14:54:57.343"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:57.346" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:57.345" endtime="20230208 14:54:57.348"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:58.100" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_57_340669_elemento_.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_57_340669_elemento_.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:57.349" endtime="20230208 14:54:58.101"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:57.344" endtime="20230208 14:54:58.101"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.104" endtime="20230208 14:54:58.104"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.101" endtime="20230208 14:54:58.105"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:57.344" endtime="20230208 14:54:58.106"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:57.321" endtime="20230208 14:54:58.106"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:57.167" endtime="20230208 14:54:58.107"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.107" endtime="20230208 14:54:58.109"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.107" endtime="20230208 14:54:58.109"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:57.166" endtime="20230208 14:54:58.110"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:57.163" endtime="20230208 14:54:58.110"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:56.233" endtime="20230208 14:54:58.110"/>
+</kw>
+<kw name="Click on button log In on LogIn Page" library="login_page">
+<kw name="Interact to element" library="basic_actions">
+<arg>${login_page.login_button}</arg>
+<arg>Click Element</arg>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20230208 14:54:58.114" endtime="20230208 14:54:58.188"/>
+</kw>
+<kw name="Execute action" library="basic_actions">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>${msg_error_customized}</arg>
+<arg>@{args}</arg>
+<try>
+<branch type="TRY">
+<if>
+<branch type="IF" condition="&quot;${keyword_action}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword_action}</arg>
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>@{args}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230208 14:54:58.211" level="INFO">Clicking element 'accessibility_id=Log in'.</msg>
+<status status="PASS" starttime="20230208 14:54:58.208" endtime="20230208 14:54:58.299"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:58.195" endtime="20230208 14:54:58.300"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:58.192" endtime="20230208 14:54:58.300"/>
+</branch>
+<branch type="ELSE">
+<return>
+<status status="NOT RUN" starttime="20230208 14:54:58.301" endtime="20230208 14:54:58.302"/>
+</return>
+<status status="NOT RUN" starttime="20230208 14:54:58.300" endtime="20230208 14:54:58.302"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:58.192" endtime="20230208 14:54:58.302"/>
+</if>
+<status status="PASS" starttime="20230208 14:54:58.191" endtime="20230208 14:54:58.303"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<if>
+<branch type="IF" condition="&quot;${msg_customized}&quot;!=&quot;${EMPTY}&quot;">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_customized}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.304" endtime="20230208 14:54:58.305"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.303" endtime="20230208 14:54:58.306"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_keyword_error}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.308" endtime="20230208 14:54:58.309"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.307" endtime="20230208 14:54:58.309"/>
+</branch>
+<status status="NOT RUN" starttime="20230208 14:54:58.303" endtime="20230208 14:54:58.310"/>
+</if>
+<status status="NOT RUN" starttime="20230208 14:54:58.303" endtime="20230208 14:54:58.310"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:58.191" endtime="20230208 14:54:58.310"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:58.189" endtime="20230208 14:54:58.310"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${status_variable_type}</var>
+<arg>isinstance($locator, str)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230208 14:54:58.312" level="INFO">${status_variable_type} = True</msg>
+<status status="PASS" starttime="20230208 14:54:58.311" endtime="20230208 14:54:58.312"/>
+</kw>
+<if>
+<branch type="IF" condition="${status_variable_type}==${False}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${locator}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230208 14:54:58.314" endtime="20230208 14:54:58.316"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.313" endtime="20230208 14:54:58.317"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:58.313" endtime="20230208 14:54:58.317"/>
+</if>
+<kw name="Save image from evidence" library="evidence">
+<arg>${locator}</arg>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_suite_name}</var>
+<arg>.+[$.]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:58.320" level="INFO">${regex_suite_name} = .+[$.]</msg>
+<status status="PASS" starttime="20230208 14:54:58.318" endtime="20230208 14:54:58.321"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${regex_elemento}</var>
+<arg>[^\\[|\\]|\\(|\\)|a-zA-Z0-9|\\s]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230208 14:54:58.323" level="INFO">${regex_elemento} = [^\[|\]|\(|\)|a-zA-Z0-9|\s]</msg>
+<status status="PASS" starttime="20230208 14:54:58.322" endtime="20230208 14:54:58.324"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${suite_name_limpo}</var>
+<arg>${SUITE NAME}</arg>
+<arg>${regex_suite_name}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:58.326" level="INFO">${suite_name_limpo} = Login</msg>
+<status status="PASS" starttime="20230208 14:54:58.325" endtime="20230208 14:54:58.328"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${elemento_limpo}</var>
+<arg>${locator}</arg>
+<arg>${regex_elemento}</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20230208 14:54:58.331" level="INFO">${elemento_limpo} = accessibilityidLog in</msg>
+<status status="PASS" starttime="20230208 14:54:58.329" endtime="20230208 14:54:58.333"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${time_evidencia}</var>
+<arg>result_format=%Y_%m_%d__%H_%M_%S_%f</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20230208 14:54:58.335" level="INFO">${time_evidencia} = 2023_02_08__14_54_58_334768</msg>
+<status status="PASS" starttime="20230208 14:54:58.333" endtime="20230208 14:54:58.335"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST NAME}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20230208 14:54:58.340" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries"&gt;C:\Users\vaaxa\TeaPayment\Testing-Flutter\results\Login\Successful Login with Valid entries&lt;/a&gt;' already exists.</msg>
+<status status="PASS" starttime="20230208 14:54:58.338" endtime="20230208 14:54:58.341"/>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<arg>${OUTPUT DIR}/${suite_name_limpo}/${TEST_NAME}/${time_evidencia}_elemento_${elemento_limpo}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230208 14:54:58.866" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_58_334768_elemento_accessibilityidLog%20in.png"&gt;&lt;img src="Login/Successful%20Login%20with%20Valid%20entries/2023_02_08__14_54_58_334768_elemento_accessibilityidLog%20in.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230208 14:54:58.343" endtime="20230208 14:54:58.866"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:58.336" endtime="20230208 14:54:58.866"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${EMPTY}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_error_dir}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.867" endtime="20230208 14:54:58.868"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.867" endtime="20230208 14:54:58.868"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:58.336" endtime="20230208 14:54:58.869"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:58.317" endtime="20230208 14:54:58.869"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:58.114" endtime="20230208 14:54:58.869"/>
+</branch>
+<branch type="EXCEPT" variable="${system_error}">
+<kw name="Create message error" library="console_log">
+<arg>${locator}</arg>
+<arg>${system_error}</arg>
+<arg>${msg_element_fail}</arg>
+<status status="NOT RUN" starttime="20230208 14:54:58.870" endtime="20230208 14:54:58.870"/>
+</kw>
+<status status="NOT RUN" starttime="20230208 14:54:58.869" endtime="20230208 14:54:58.870"/>
+</branch>
+<status status="PASS" starttime="20230208 14:54:58.114" endtime="20230208 14:54:58.872"/>
+</try>
+<status status="PASS" starttime="20230208 14:54:58.112" endtime="20230208 14:54:58.872"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:58.111" endtime="20230208 14:54:58.872"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230208 14:55:03.873" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230208 14:54:58.873" endtime="20230208 14:55:03.873"/>
+</kw>
+<kw name="Close app" library="app" type="TEARDOWN">
+<kw name="Close Application" library="AppiumLibrary">
+<doc>Closes the current application and also close webdriver session.</doc>
+<status status="PASS" starttime="20230208 14:55:03.876" endtime="20230208 14:55:04.756"/>
+</kw>
+<status status="PASS" starttime="20230208 14:55:03.874" endtime="20230208 14:55:04.757"/>
+</kw>
+<status status="PASS" starttime="20230208 14:54:19.473" endtime="20230208 14:55:04.757"/>
+</test>
+<status status="PASS" starttime="20230208 14:54:17.854" endtime="20230208 14:55:04.760"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
